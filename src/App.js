@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 
 const App = props => {
   const [state, setState] = useState(props)
   const {name,price} = state
+
+  useEffect(() => {
+    console.log('this is like componentDidMount')
+  })
+
+  useEffect(() => {
+    console.log('this is like componentDidMount')
+  } , [])
+
+  useEffect(() => {
+    console.log('this callback is for nmae only')
+  } , [name])
+
   return (
     <React.Fragment>
      <p>{name}'s price is ${price}</p>
