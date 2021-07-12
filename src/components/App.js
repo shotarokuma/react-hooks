@@ -23,6 +23,21 @@ const App = () => {
     setTitle('')
     setBody('')
   }
+
+  const deleteAllEvents = e =>{
+    e.preventDefault()
+    const result = window.confirm('Are you OK for delting all events?')
+    if(result)dispatch(
+      {
+        type: 'DELETE_ALL_EVENT',
+      }
+    )
+  }
+
+  const uncreatable = title === ''||body === ''
+
+  const undeletable = state.length === 0
+
   return (
     <div className="container-fluid">
       <h4>event create form</h4>
@@ -35,8 +50,8 @@ const App = () => {
           <label htmlFor="fromEventBody">body</label>
           <textarea className="form-control" id="fromEventBody" value={body} onChange={e => setBody(e.target.value)} />
         </div>
-        <button className="btn btn-primary" onClick={addEvent}>create event</button>
-        <button className="btn btn-danger">delete all events</button>
+        <button className="btn btn-primary" onClick={addEvent} disabled={uncreatable}>create event</button>
+        <button className="btn btn-danger" onClick ={deleteAllEvents} disabled={undeletable}>delete all events</button>
       </form>
 
       <h4>event</h4>
